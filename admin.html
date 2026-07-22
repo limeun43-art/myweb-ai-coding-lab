@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>관리자 대시보드 - Lim Eun-hye AI·코딩 교육 연구소</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+
+  <div class="admin-layout">
+    <!-- Sidebar -->
+    <aside class="admin-sidebar" id="admin-sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-logo">
+          <div class="logo-badge">LH</div>
+          <div>
+            <div class="sidebar-logo-text">Admin Panel</div>
+            <div class="sidebar-logo-sub">AI·코딩 교육 연구소</div>
+          </div>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="sidebar-section-label">콘텐츠 관리</div>
+        <a class="sidebar-link active" data-section="dashboard">
+          <i class="fas fa-gauge-high"></i> 대시보드
+        </a>
+        <a class="sidebar-link" data-section="hero">
+          <i class="fas fa-flag"></i> 히어로 섹션
+        </a>
+        <a class="sidebar-link" data-section="about">
+          <i class="fas fa-user"></i> 강사 소개
+        </a>
+        <a class="sidebar-link" data-section="stats">
+          <i class="fas fa-chart-bar"></i> 성과 통계
+        </a>
+        <a class="sidebar-link" data-section="programs">
+          <i class="fas fa-cubes"></i> 커리큘럼 카드
+        </a>
+        <a class="sidebar-link" data-section="gallery">
+          <i class="fas fa-images"></i> 갤러리
+        </a>
+        <a class="sidebar-link" data-section="contact-info">
+          <i class="fas fa-address-card"></i> 연락처 정보
+        </a>
+
+        <div class="sidebar-section-label">시스템</div>
+        <a class="sidebar-link" data-section="reset">
+          <i class="fas fa-rotate-left"></i> 데이터 초기화
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <a class="sidebar-link" id="btn-logout">
+          <i class="fas fa-right-from-bracket"></i> 로그아웃
+        </a>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="admin-main">
+      <!-- Top Bar -->
+      <div class="admin-topbar">
+        <div style="display:flex;align-items:center;gap:0.75rem;">
+          <button class="admin-mobile-toggle" id="admin-mobile-toggle" aria-label="사이드바 열기">
+            <i class="fas fa-bars"></i>
+          </button>
+          <div class="topbar-title" id="topbar-title">
+            <i class="fas fa-gauge-high"></i> 대시보드
+          </div>
+        </div>
+        <div class="topbar-actions">
+          <a href="index.html" target="_blank" class="topbar-site-link">
+            <i class="fas fa-external-link-alt"></i> 사이트 보기
+          </a>
+        </div>
+      </div>
+
+      <!-- Dynamic Content Area -->
+      <div class="admin-content" id="admin-content">
+        <!-- Content is rendered by JS -->
+      </div>
+    </main>
+  </div>
+
+  <!-- Edit Modal -->
+  <div class="edit-modal" id="edit-modal">
+    <div class="edit-modal-content">
+      <div class="edit-modal-header">
+        <h3 id="edit-modal-title">항목 수정</h3>
+        <button class="modal-close" id="edit-modal-close" aria-label="닫기">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="edit-modal-body" id="edit-modal-body">
+        <!-- Dynamic form content -->
+      </div>
+      <div class="edit-modal-footer">
+        <button class="btn btn-outline" id="edit-modal-cancel">
+          <i class="fas fa-xmark"></i> 취소
+        </button>
+        <button class="btn btn-primary" id="edit-modal-save">
+          <i class="fas fa-check"></i> 저장하기
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="admin-toast" id="admin-toast"></div>
+
+  <script type="module" src="js/admin.js"></script>
+</body>
+</html>
