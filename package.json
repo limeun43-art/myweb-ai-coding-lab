@@ -1,0 +1,26 @@
+{
+  "name": "myweb",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/limeun43-art/myweb-ai-coding-lab.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/limeun43-art/myweb-ai-coding-lab/issues"
+  },
+  "homepage": "https://github.com/limeun43-art/myweb-ai-coding-lab#readme",
+  "devDependencies": {
+    "vite": "^8.1.5"
+  }
+}
