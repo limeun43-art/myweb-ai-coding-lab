@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>말랑 얌얌 & 수분 일기 🍓💧 | 쉽고 귀여운 식단 & 물 기록장</title>
+  <meta name="description" content="오늘 먹은 음식과 물 마신 잔 수를 쉽게 기록하는 귀여운 파스텔 톤 다이어리 사이트입니다.">
+  <meta name="keywords" content="식단일기, 물마시기, 칼로리계산기, 다이어트일기, 건강습관">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&family=Gowun+Dodum&family=Jua&display=swap" rel="stylesheet">
+
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/tracker.css">
+</head>
+<body>
+  <!-- Confetti Canvas overlay -->
+  <canvas id="confetti-canvas"></canvas>
+
+  <!-- Background Animated Giraffes with Blinking Eyes (Nostrils removed) -->
+  <div class="bg-giraffe-wrapper left-giraffe" aria-hidden="true" title="눈이 깜박이는 귀여운 기린">
+    <svg width="180" height="260" viewBox="0 0 180 260" fill="none" xmlns="http://www.w3.org/2000/svg" class="giraffe-svg">
+      <!-- Neck -->
+      <path d="M 60 260 L 75 120 C 75 110 85 100 95 100 L 115 100 C 125 100 135 110 135 120 L 145 260 Z" fill="#FFCA28" />
+      <!-- Spots -->
+      <ellipse cx="90" cy="180" rx="12" ry="16" fill="#EF6C00" opacity="0.8" />
+      <ellipse cx="120" cy="220" rx="14" ry="12" fill="#EF6C00" opacity="0.8" />
+      <ellipse cx="105" cy="140" rx="10" ry="10" fill="#EF6C00" opacity="0.8" />
+      <!-- Mane -->
+      <path d="M 60 260 Q 50 200 65 120" stroke="#E65100" stroke-width="8" stroke-dasharray="10 6" stroke-linecap="round" />
+      <!-- Ears -->
+      <path d="M 65 75 Q 30 60 55 90 Z" fill="#FFB300" stroke="#E65100" stroke-width="2" />
+      <path d="M 145 75 Q 180 60 155 90 Z" fill="#FFB300" stroke="#E65100" stroke-width="2" />
+      <path d="M 62 77 Q 42 68 57 87 Z" fill="#FF8A80" />
+      <path d="M 148 77 Q 168 68 153 87 Z" fill="#FF8A80" />
+      <!-- Horns -->
+      <rect x="82" y="40" width="8" height="30" rx="4" fill="#FFE082" />
+      <circle cx="86" cy="38" r="8" fill="#E65100" />
+      <rect x="120" y="40" width="8" height="30" rx="4" fill="#FFE082" />
+      <circle cx="124" cy="38" r="8" fill="#E65100" />
+      <!-- Head -->
+      <ellipse cx="105" cy="95" rx="45" ry="38" fill="#FFCA28" />
+      <!-- Snout -->
+      <ellipse cx="105" cy="115" rx="32" ry="22" fill="#FFE082" />
+      <!-- Smile -->
+      <path d="M 98 124 Q 105 130 112 124" stroke="#BF360C" stroke-width="3" stroke-linecap="round" fill="none" />
+      <!-- Cheeks -->
+      <circle cx="70" cy="105" r="10" fill="#FF8A80" opacity="0.65" />
+      <circle cx="140" cy="105" r="10" fill="#FF8A80" opacity="0.65" />
+      <!-- BLINKING EYES -->
+      <g class="giraffe-eyes-left">
+        <ellipse cx="80" cy="85" rx="9" ry="11" fill="#263238" />
+        <circle cx="83" cy="81" r="3.5" fill="#FFFFFF" />
+        <circle cx="78" cy="88" r="1.5" fill="#FFFFFF" />
+        <ellipse cx="130" cy="85" rx="9" ry="11" fill="#263238" />
+        <circle cx="133" cy="81" r="3.5" fill="#FFFFFF" />
+        <circle cx="128" cy="88" r="1.5" fill="#FFFFFF" />
+      </g>
+    </svg>
+  </div>
+
+  <div class="bg-giraffe-wrapper right-giraffe" aria-hidden="true" title="눈이 깜박이는 귀여운 기린">
+    <svg width="170" height="250" viewBox="0 0 170 250" fill="none" xmlns="http://www.w3.org/2000/svg" class="giraffe-svg">
+      <!-- Neck -->
+      <path d="M 45 250 L 55 110 C 55 100 65 90 75 90 L 95 90 C 105 90 115 100 115 110 L 125 250 Z" fill="#FFD54F" />
+      <!-- Spots -->
+      <ellipse cx="75" cy="170" rx="13" ry="11" fill="#F57C00" opacity="0.85" />
+      <ellipse cx="100" cy="210" rx="11" ry="15" fill="#F57C00" opacity="0.85" />
+      <ellipse cx="85" cy="125" rx="9" ry="9" fill="#F57C00" opacity="0.85" />
+      <!-- Mane -->
+      <path d="M 125 250 Q 135 190 115 110" stroke="#E65100" stroke-width="8" stroke-dasharray="10 6" stroke-linecap="round" />
+      <!-- Ears -->
+      <path d="M 45 65 Q 10 50 35 80 Z" fill="#FFC107" stroke="#E65100" stroke-width="2" />
+      <path d="M 125 65 Q 160 50 135 80 Z" fill="#FFC107" stroke="#E65100" stroke-width="2" />
+      <path d="M 42 67 Q 22 58 37 77 Z" fill="#FF8A80" />
+      <path d="M 128 67 Q 148 58 133 77 Z" fill="#FF8A80" />
+      <!-- Horns -->
+      <rect x="62" y="30" width="7" height="28" rx="3.5" fill="#FFE082" />
+      <circle cx="65.5" cy="28" r="7" fill="#E65100" />
+      <rect x="100" y="30" width="7" height="28" rx="3.5" fill="#FFE082" />
+      <circle cx="103.5" cy="28" r="7" fill="#E65100" />
+      <!-- Head -->
+      <ellipse cx="85" cy="85" rx="42" ry="35" fill="#FFD54F" />
+      <!-- Snout -->
+      <ellipse cx="85" cy="103" rx="30" ry="20" fill="#FFF59D" />
+      <!-- Smile & Leaf -->
+      <path d="M 78 110 Q 85 116 92 110" stroke="#BF360C" stroke-width="2.5" stroke-linecap="round" fill="none" />
+      <path d="M 92 110 Q 110 100 115 112 Q 105 120 92 110 Z" fill="#66BB6A" />
+      <!-- Cheeks -->
+      <circle cx="52" cy="94" r="9" fill="#FF8A80" opacity="0.65" />
+      <circle cx="118" cy="94" r="9" fill="#FF8A80" opacity="0.65" />
+      <!-- BLINKING EYES -->
+      <g class="giraffe-eyes-right">
+        <ellipse cx="62" cy="76" rx="8.5" ry="10" fill="#263238" />
+        <circle cx="65" cy="73" r="3" fill="#FFFFFF" />
+        <circle cx="60" cy="79" r="1.5" fill="#FFFFFF" />
+        <ellipse cx="108" cy="76" rx="8.5" ry="10" fill="#263238" />
+        <circle cx="111" cy="73" r="3" fill="#FFFFFF" />
+        <circle cx="106" cy="79" r="1.5" fill="#FFFFFF" />
+      </g>
+    </svg>
+  </div>
+
+  <div class="app-wrapper">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="logo-container">
+        <span class="app-emoji">🍓💧</span>
+        <div>
+          <h1 class="app-title">말랑 얌얌 & 수분 일기</h1>
+          <p class="app-subtitle">오늘 먹은 음식과 물 마신 잔 수를 상큼하게 기록해보세요!</p>
+        </div>
+      </div>
+      <a href="index.html" class="home-link-btn" title="연구소 메인으로 이동">
+        <i class="fas fa-home"></i> 메인 홈
+      </a>
+    </header>
+
+    <!-- Date Navigation Bar -->
+    <section class="date-bar-container">
+      <div class="date-bar">
+        <button id="prev-date-btn" class="date-nav-btn" aria-label="어제 날짜로 이동">
+          <i class="fas fa-chevron-left"></i>
+        </button>
+        <div class="date-display-box">
+          <i class="far fa-calendar-alt calendar-icon"></i>
+          <input type="date" id="date-picker-input" class="date-input" aria-label="날짜 선택">
+          <span id="date-text-display" class="date-text">2026년 7월 24일 (금)</span>
+        </div>
+        <button id="next-date-btn" class="date-nav-btn" aria-label="내일 날짜로 이동">
+          <i class="fas fa-chevron-right"></i>
+        </button>
+      </div>
+      <button id="today-btn" class="btn-today">
+        <i class="fas fa-star"></i> 오늘로 돌아오기
+      </button>
+    </section>
+
+    <!-- Celebration Banner (Shown when water >= 8) -->
+    <div id="water-goal-banner" class="goal-banner hidden" role="status" aria-live="polite">
+      <span class="banner-icon">🎉</span>
+      <div class="banner-text">
+        <strong>오늘의 물 목표 달성! 🎉</strong>
+        <span>짝짝짝! 8잔의 물을 마셔서 몸 속 수분이 100% 충전되었어요! 💧✨</span>
+      </div>
+      <button id="trigger-confetti-btn" class="btn-banner-action">
+        <i class="fas fa-magic"></i> 또 축하받기!
+      </button>
+    </div>
+
+    <!-- Main Grid Content -->
+    <main class="main-grid">
+
+      <!-- LEFT COLUMN: WATER TRACKER -->
+      <section class="card water-card" id="water-section">
+        <div class="card-header">
+          <div class="card-title-group">
+            <span class="card-emoji">💧</span>
+            <h2>물 마시기 트래커</h2>
+          </div>
+          <span class="target-badge">하루 목표 8잔 (2.0L)</span>
+        </div>
+
+        <div class="water-status-box">
+          <div class="water-count-display">
+            <span id="water-count-num" class="count-num">0</span>
+            <span class="count-unit">/ 8 잔</span>
+          </div>
+          <p id="water-desc-text" class="water-desc">아직 물을 안 마셨어요. 시원한 물 한 잔 어때요? 🧊</p>
+          <div class="progress-bar-bg">
+            <div id="water-progress-fill" class="progress-bar-fill" style="width: 0%;"></div>
+          </div>
+        </div>
+
+        <!-- 8 Glass Visual Grid -->
+        <div class="glasses-visual-grid" id="glasses-visual-grid" aria-label="물 잔 상태 리스트">
+          <!-- 8 cups generated dynamically by JS -->
+        </div>
+
+        <!-- Incremenet / Decrement Big Control Buttons -->
+        <div class="water-controls">
+          <button id="water-minus-btn" class="water-btn btn-minus" aria-label="물 1잔 줄이기">
+            <i class="fas fa-minus"></i> 1잔 빼기
+          </button>
+          <button id="water-plus-btn" class="water-btn btn-plus" aria-label="물 1잔 더하기">
+            <i class="fas fa-plus"></i> 1잔 마시기!
+          </button>
+        </div>
+      </section>
+
+      <!-- RIGHT COLUMN: FOOD & CALORIE TRACKER -->
+      <section class="card food-card" id="food-section">
+        <div class="card-header">
+          <div class="card-title-group">
+            <span class="card-emoji">🍱</span>
+            <h2>오늘 먹은 음식 기록</h2>
+          </div>
+          <div id="total-calorie-pill" class="calorie-pill">
+            오늘 총 <strong id="total-calorie-num">0</strong> kcal
+          </div>
+        </div>
+
+        <!-- Food Add Form -->
+        <form id="food-form" class="food-form">
+          <div class="form-row">
+            <!-- Meal Type Selector -->
+            <div class="meal-type-selector">
+              <label class="meal-radio-label">
+                <input type="radio" name="mealType" value="아침" checked>
+                <span class="radio-custom">🍳 아침</span>
+              </label>
+              <label class="meal-radio-label">
+                <input type="radio" name="mealType" value="점심">
+                <span class="radio-custom">🥗 점심</span>
+              </label>
+              <label class="meal-radio-label">
+                <input type="radio" name="mealType" value="저녁">
+                <span class="radio-custom">🍕 저녁</span>
+              </label>
+              <label class="meal-radio-label">
+                <input type="radio" name="mealType" value="간식">
+                <span class="radio-custom">🍰 간식</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-inputs-group">
+            <div class="input-field food-name-field">
+              <label for="food-name-input"><i class="fas fa-utensils"></i> 음식이름 <span class="required">*</span></label>
+              <input type="text" id="food-name-input" placeholder="예: 비빔밥, 바나나, 샌드위치" required maxlength="30">
+            </div>
+            <div class="input-field calorie-field">
+              <label for="food-calorie-input"><i class="fas fa-fire"></i> 칼로리 (선택)</label>
+              <input type="number" id="food-calorie-input" placeholder="예: 350" min="0" max="5000">
+            </div>
+            <button type="submit" class="btn-add-food">
+              <i class="fas fa-plus-circle"></i> 음식 추가
+            </button>
+          </div>
+        </form>
+
+        <!-- Quick Add Preset Chips -->
+        <div class="quick-preset-container">
+          <span class="preset-label"><i class="fas fa-bolt"></i> 원클릭 빠른 추가:</span>
+          <div class="preset-chips">
+            <button type="button" class="chip-btn" data-name="사과 1개" data-cal="95" data-meal="간식">🍎 사과 (95kcal)</button>
+            <button type="button" class="chip-btn" data-name="삼각김밥" data-cal="210" data-meal="점심">🍙 삼각김밥 (210kcal)</button>
+            <button type="button" class="chip-btn" data-name="닭가슴살 샐러드" data-cal="180" data-meal="점심">🥗 샐러드 (180kcal)</button>
+            <button type="button" class="chip-btn" data-name="아메리카노" data-cal="10" data-meal="간식">☕ 아메리카노 (10kcal)</button>
+            <button type="button" class="chip-btn" data-name="우유 1잔" data-cal="130" data-meal="간식">🥛 우유 (130kcal)</button>
+          </div>
+        </div>
+
+        <!-- Food List Container -->
+        <div class="food-list-section">
+          <div class="food-list-header">
+            <h3>오늘의 식사 리스트 (<span id="food-item-count">0</span>개)</h3>
+            <button id="clear-all-food-btn" class="btn-text-danger" title="오늘 음식 모두 삭제">
+              <i class="fas fa-trash-alt"></i> 전체 삭제
+            </button>
+          </div>
+
+          <!-- Empty State -->
+          <div id="food-empty-state" class="empty-state">
+            <div class="empty-icon">🍽️</div>
+            <p>아직 기록된 음식이 없어요!</p>
+            <span>위에서 오늘 맛있는 음식이나 간식을 추가해보세요.</span>
+          </div>
+
+          <!-- Food List UL -->
+          <ul id="food-list" class="food-list">
+            <!-- Dynamic Food Items inserted here -->
+          </ul>
+        </div>
+      </section>
+
+      <!-- BOTTOM SECTION: DAILY MEMO & SUMMARY -->
+      <section class="card memo-card">
+        <div class="card-header">
+          <div class="card-title-group">
+            <span class="card-emoji">📝</span>
+            <h2>오늘의 한 줄 메모 & 습관 일기</h2>
+          </div>
+        </div>
+        <div class="memo-content">
+          <textarea id="daily-memo-input" placeholder="오늘 운동이나 컨디션, 기분을 자유롭게 적어보세요! (자동 저장됩니다 ✨)"></textarea>
+          <div class="memo-footer">
+            <span id="memo-save-status" class="save-status-text"><i class="fas fa-check-circle"></i> 자동 저장됨</span>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+      <p>🎈 <strong>말랑 얌얌 & 수분 일기</strong> | 매일 매일 더 건강하고 기분 좋은 하루!</p>
+      <p class="footer-sub">Lim Eun-hye AI·코딩 연구소 | 2026</p>
+    </footer>
+  </div>
+
+  <!-- CELEBRATION MODAL (Water Goal Achieved) -->
+  <div id="celebration-modal" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-card">
+      <div class="modal-emoji-bounce">🎉💧✨</div>
+      <h2 id="modal-title" class="modal-title">오늘의 물 목표 달성! 🎉</h2>
+      <p class="modal-desc">
+        우와! <strong>물 8잔 마시기</strong>를 멋지게 해냈어요!<br>
+        충분한 수분 섭취로 한층 더 가볍고 맑은 하루가 될 거예요 💙
+      </p>
+      <div class="modal-badge-box">
+        <div class="badge-item">
+          <span class="badge-icon">🏆</span>
+          <span>수분 왕</span>
+        </div>
+        <div class="badge-item">
+          <span class="badge-icon">💧</span>
+          <span>8잔 Complete!</span>
+        </div>
+      </div>
+      <button id="close-modal-btn" class="btn-modal-close">
+        기분 좋게 계속하기 😊
+      </button>
+    </div>
+  </div>
+
+  <!-- JavaScript -->
+  <script type="module" src="js/tracker.js"></script>
+</body>
+</html>
