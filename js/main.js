@@ -89,7 +89,7 @@ async function hydrateSiteData() {
     if (galleryGrid && data.gallery) {
       galleryGrid.innerHTML = data.gallery.map(g => `
         <div class="gallery-card" tabindex="0" role="button" aria-label="수업 현장 크게 보기">
-          <img src="${g.imageUrl}" alt="${g.title}" class="gallery-img">
+          <img src="${g.imageUrl}" alt="${g.title}" class="gallery-img" loading="lazy">
           <div class="gallery-overlay">
             <span class="gallery-tag">${g.tag}</span>
             <div class="gallery-title">${g.title}</div>
